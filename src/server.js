@@ -13,7 +13,24 @@ app.use(express.urlencoded({ extended: true }));
 
 // ideally it should allow only some of its known origins.
 app.use(cors({
-    origin: '*'
+    origin(origin, callback) {
+        // set of allowed origin.
+        const allowedOrigin = ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5000']
+        if (!origin || allowedOrigin.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
+    credentials: true,
+    allowedHeaders: [
+        'Access-Control-Allow-Headers',
+        'Content-Type',
+        'Origin',
+        'X-Requested-With',
+        'Accept',
+        'Authorization',
+    ],
 }))
 
 app.use('/api/books', BookRouter)
@@ -24,7 +41,7 @@ app.use('/api/return', ReturnBookRouter)
 app.listen(port, async () => {
     try {
         await connection
-        console.log(`server is running on port ${port}`)
+        console.log(`Server is running on port ${port}`)
     } catch (error) {
         console.log(error, "error while starting the server!")
     }

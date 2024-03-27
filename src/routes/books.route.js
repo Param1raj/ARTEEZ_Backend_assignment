@@ -5,7 +5,7 @@ import { handleValidationErrors, librarianAutherization } from "../utils/utils.j
 
 const BookRouter = Router();
 // Fetche all the book available
-BookRouter.get('/', async (req, res) => {
+BookRouter.get('/', async (_, res) => {
     try {
         const books = await BookModule.find({ quantity: { $gt: 0 } }).exec();
         console.log(books);
