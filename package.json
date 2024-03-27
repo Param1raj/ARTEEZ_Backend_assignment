@@ -2,11 +2,23 @@
   "name": "arteez_backend_assignment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node-dev --respawn ./src/*.*"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Param Raj",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.3",
+    "node-dev": "^8.0.0",
+    "validator": "^13.11.0"
+  }
 }
